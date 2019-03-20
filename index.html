@@ -1,0 +1,228 @@
+<!--**
+* File Name: Assignment2
+*
+* Revision History:
+*       Young Geun, Kim, 2019-02-27 : Created
+*       Young Geun, Kim, 2019-03-03 : Updated
+*-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Testing MultiColumn content</title>
+
+    <!--Custom myTheme-->
+    <link rel="stylesheet" href="css/themes/myTheme.min.css" />
+    <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+    <!--jQuery-->
+    <script src="js/lib/jquery-2.1.4.js"></script>
+    <!--jQuery mobile-->
+    <script src="js/lib/jquery.mobile-1.4.5.js"></script>
+    <script src="js/lib/jquery.validate.js"></script>
+    <!--jQuery mobile css-->
+    <link rel="stylesheet" type="text/css" href="css/lib/jquery.mobile-1.4.5.css">
+    <!--js Files-->
+    <script src="js/YKfeedbackDAL.js"></script>
+    <script src="js/YKdatabase.js"></script>
+    <script src="js/YKglobal.js"></script>
+    <script src="js/YKutil.js"></script>
+    <!--myStyle File-->
+    <link rel="stylesheet" type="text/css" href="css/YKmystyle.css">
+</head>
+<body>
+    <!--page 1-->
+        <div data-role="page" id="YKHomePage">
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>YK Feedback A2</h1>
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li><a href="#YKHomePage" data-icon="home" data-theme="a" class="ui-btn-active ui-state-persist">Home</a></li>
+                        <li><a href="#YKAddFeedbackPage" data-theme="a" data-icon="grid">Add</a></li>
+                        <li><a href="#YKViewFeedbackPage" data-theme="a" data-icon="star">Reviews</a></li>
+                        <li><a href="#YKSettingPage" data-theme="a" data-icon="gear">Settings</a></li>
+                    </ul>
+                </div>
+            </header>
+            <section data-role="content">
+                <h2>Young Geun, Kim's Feedback A2 App</h2>
+                <p>Welcome to the Young Geun, Kim's Feedback A2 app. A prototype designed for mobile programming class. This is the first iteration of the app to keep track of different places you visited along with your reviews</p>
+                <div  align="middle"><img src="img/YK-icon.png"></div>
+                <p>Please feel free to contact me if you have any suggestions!</p>
+                <a data-role="button" data-icon="plus">Call: 519.748.5220</a>
+                <a data-role="button" data-icon="plus">ykim1059@conestogac.on.ca</a>
+                <p>Website:</p>
+                <a data-role="button" data-icon="plus">Conestoga College</a>
+            </section>
+            <footer data-role="footer" data-theme="b" data-position="fixed">
+                <h4>&copy; 2019 Young Geun, Kim</h4>
+            </footer>
+        </div>
+    <!--page 2-->
+    <div data-role="page" id="YKAddFeedbackPage">
+        <header data-role="header" data-theme="b" data-position="fixed">
+            <h1>Add a Feedback</h1>
+            <div data-role="navbar" data-iconpos="top">
+                <ul>
+                    <li><a href="#YKHomePage" data-theme="a" data-icon="home">Home</a></li>
+                    <li><a href="#YKAddFeedbackPage" data-theme="a" data-icon="grid" class="ui-btn-active ui-state-persist">Add</a></li>
+                    <li><a href="#YKViewFeedbackPage" data-theme="a" data-icon="star">Reviews</a></li>
+                    <li><a href="#YKSettingPage" data-theme="a" data-icon="gear">Settings</a></li>
+                </ul>
+            </div>
+        </header>
+        <section data-role="content">
+            <form id="YKAddForm">
+                <p>Business Name:</p>
+                <input type="text" id="YKAddName" name="YKAddName">
+                <p>Type:</p>
+                <select name="YKAddType">
+                    <option value="Other">Other</option>
+                    <option value="Asian">Asian</option>
+                    <option value="Canadian">Canadian</option>
+                </select>
+                <p>Reviewer Email:</p>
+                <input type="text" id="YKAddEmail" name="YKAddEmail">
+                <p>Reviewer Comments:</p>
+                <textarea id="YKAddComment" name="YKAddComment"></textarea>
+                <p>Review Date:</p>
+                <input type="date" id="YKAddDate" name="YKAddDate">
+                <label>
+                    <input type="checkbox" id="YKAddCheck"> Do you want to add your ratings?
+                </label>
+                <div id="YKAddFolder">
+                    <p>Food Quality (0-5):</p>
+                    <input type="number" value="0" id="YKAddFoodRate" name="YKAddFoodRate">
+                    <p>Service (0-5):</p>
+                    <input type="number" value="0" id="YKAddServiceRate" name="YKAddServiceRate">
+                    <p>Value (0-5):</p>
+                    <input type="number" value="0" id="YKAddValueRate" name="YKAddValueRate">
+                    <p>Overall Rating (calculated):</p>
+                    <input type="text" value="0%" id="YKAddOverAllRate" name="YKAddOverAllRate" readonly disabled>
+                </div>
+
+                <button type="button" data-inline="true" data-theme="c" data-role="button" id="YKSave" name="YKSave">Save</button>
+            </form>
+        </section>
+        <footer data-role="footer" data-theme="b" data-position="fixed">
+            <h4>&copy; 2019 Young Geun, Kim</h4>
+        </footer>
+    </div>
+    <!--page 3-->
+    <div data-role="page" id="YKViewFeedbackPage">
+        <header data-role="header" data-theme="b" data-position="fixed">
+            <h1>List of Reviews</h1>
+            <div data-role="navbar" data-iconpos="top">
+                <ul>
+                    <li><a href="#YKHomePage" data-theme="a" data-icon="home">Home</a></li>
+                    <li><a href="#YKAddFeedbackPage" data-theme="a" data-icon="grid">Add</a></li>
+                    <li><a href="#YKViewFeedbackPage" data-theme="a" data-icon="star" class="ui-btn-active ui-state-persist">Reviews</a></li>
+                    <li><a href="#YKSettingPage" data-theme="a" data-icon="gear">Settings</a></li>
+                </ul>
+            </div>
+        </header>
+        <section data-role="content">
+            <ul data-role="listview" data-inset="true" id="YKFeedbackList">
+                <li>
+                    <a href="#YKEditFeedbackPage" data-role="button">
+                    <h3>Business Name: HelloWorld Internet Cafe</h3>
+                    <p>Reviewer Email: mb@joa.com</p>
+                    <p>Comments: Great Customer Service!</p>
+                    <p>Overall Rating: 100%</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#YKEditFeedbackPage" data-role="button">
+                    <h3>Business Name: UnderGround Poker Club</h3>
+                    <p>Reviewer Email: ys@joa.com</p>
+                    <p>Comments: Worst service ever</p>
+                    <p>Overall Rating: 10%</p>
+                    </a>
+                </li>
+            </ul>
+        </section>
+        <footer data-role="footer" data-theme="b" data-position="fixed">
+            <h4>&copy; 2019 Young Geun, Kim</h4>
+        </footer>
+    </div>
+    <!--page 4-->
+    <div data-role="page" id="YKEditFeedbackPage">
+        <header data-role="header" data-theme="b" data-position="fixed">
+            <h1>Modify Feedback</h1>
+            <div data-role="navbar" data-iconpos="top">
+                <ul>
+                    <li><a href="#YKHomePage" data-theme="a" data-icon="home">Home</a></li>
+                    <li><a href="#YKAddFeedbackPage" data-theme="a" data-icon="grid">Add</a></li>
+                    <li><a href="#YKViewFeedbackPage" data-theme="a" data-icon="star" class="ui-btn-active ui-state-persist">Reviews</a></li>
+                    <li><a href="#YKSettingPage" data-theme="a" data-icon="gear">Settings</a></li>
+                </ul>
+            </div>
+        </header>
+        <section data-role="content">
+            <form id="YKEditForm">
+                <p>Business Name:</p>
+                <input type="text" id="YKEditName" name="YKEditName" value="HelloWorld Internet Cafe">
+                <p>Type:</p>
+                <select>
+                    <option value="Other">Other</option>
+                    <option value="Asian">Asian</option>
+                    <option value="Canadian">Canadian</option>
+                </select>
+                <p>Reviewer Email:</p>
+                <input type="text" id="YKEditEmail" name="YKEditEmail" value="mb@joa.com">
+                <p>Reviewer Comments:</p>
+                <textarea>Great Customer Service!</textarea>
+                <p>Review Date:</p>
+                <input type="date" id="YKEditDate" name="YKEditDate">
+                <label>
+                    <input type="checkbox" id="YKEditCheck"> Do you want to add your ratings?
+                </label>
+                <div id="YKEditFolder">
+                    <p>Food Quality (0-5):</p>
+                    <input type="number" value="0" id="YKEditFoodRate" name="YKEditFoodRate">
+                    <p>Service (0-5):</p>
+                    <input type="number" value="0" id="YKEditServiceRate" name="YKEditServiceRate">
+                    <p>Value (0-5):</p>
+                    <input type="number" value="0" id="YKEditValueRate" name="YKEditValueRate">
+                    <p>Overall Rating (calculated):</p>
+                    <input type="text" value="0%" id="YKEditOverAllRate" name="YKEditOverAllRate" readonly disabled>
+                </div>
+
+                <div data-role="controlgroup" data-type="horizontal">
+                    <button type="button" data-role="button" id="YKCancel" name="YKCancel" data-theme="d">Cancel</button>
+                    <button type="button" data-role="button" id="YKDelete" name="YKDelete" data-theme="b">Delete</button>
+                    <button type="button" data-role="button" id="YKUpdate" name="YKUpdate" data-theme="c">Update</button>
+                </div>
+            </form>
+        </section>
+        <footer data-role="footer" data-theme="b" data-position="fixed">
+            <h4>&copy; 2019 Young Geun, Kim</h4>
+        </footer>
+    </div>
+    <!--page 5-->
+    <div data-role="page" id="YKSettingPage">
+        <header data-role="header" data-theme="b" data-position="fixed">
+            <h1>Settings</h1>
+            <div data-role="navbar" data-iconpos="top">
+                <ul>
+                    <li><a href="#YKHomePage" data-theme="a" data-icon="home">Home</a></li>
+                    <li><a href="#YKAddFeedbackPage" data-theme="a" data-icon="grid">Add</a></li>
+                    <li><a href="#YKViewFeedbackPage" data-theme="a" data-icon="star">Reviews</a></li>
+                    <li><a href="#YKSettingPage" data-theme="a" data-icon="gear"  class="ui-btn-active ui-state-persist">Settings</a></li>
+                </ul>
+            </div>
+        </header>
+        <section data-role="content">
+            <form id="YKSettingForm">
+                <p>Default reviewer Email:</p>
+                <input type="text" value="Ykim1059@conestogac.on.ca" id="YKSettingEmail" name="YKSettingEmail">
+                <p>Reviewer Email:</p>
+                    <button type="button" data-role="button" data-theme="c" id="YKSettingSave" name="YKSettingSave">Save Defaults</button>
+                    <button type="button" data-role="button" data-theme="b" id="YKSettingClear" name="YKSettingClear">Clear Database</button>
+            </form>
+        </section>
+        <footer data-role="footer" data-theme="b" data-position="fixed">
+            <h4>&copy; 2019 Young Geun, Kim</h4>
+        </footer>
+    </div>
+</body>
+</html>
